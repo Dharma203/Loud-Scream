@@ -7,6 +7,7 @@ from game_utils import reset_game, generate_ground_block
 
 pygame.mixer.init()
 background_music = pygame.mixer.Sound("resources/background_music.mp3")
+jump_effect = pygame.mixer.Sound("resources/jump.mp3")
 
 dark_overlay = np.zeros((480, 640, 3), dtype=np.uint8)
 cv2.rectangle(dark_overlay, (0, 0), (640, 480), (0, 0, 50), -1)
@@ -27,7 +28,7 @@ stream = p.open(format=pyaudio.paInt16,
                 input_device_index=device_index,
                 frames_per_buffer=chunk)
 
-character_img = cv2.imread("resources/piyik.jpg", cv2.IMREAD_UNCHANGED)
+character_img = cv2.imread("resources/piyik.png", cv2.IMREAD_UNCHANGED)
 block_image = cv2.imread("resources/Block.jpg", cv2.IMREAD_UNCHANGED)
 
 character_scale = 0.15
@@ -222,7 +223,7 @@ while True:
             state['jumping'] = True
             state['y_velocity'] = jump_velocity
             last_jump_time = current_time
-            print(f"Jump triggered! smoothed volume={smooth_volume:.2f}, y_velocity={jump_velocity}")
+            jump_effect.play()
 
     state['speed'] = base_speed + (state['score'] * scaling_factor)
 
