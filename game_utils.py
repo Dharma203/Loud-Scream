@@ -9,9 +9,6 @@ def display_message(frame, text, position, size=1, color=(255, 255, 255)):
     text_y = int(position[1])
     cv2.putText(frame, text, (text_x, text_y), font, size, color, 2, cv2.LINE_AA)
 
-def show_start_screen(frame, frame_w, frame_h):
-    frame[:] = 0
-    display_message(frame, "Press SPACE or Click to Start", (frame_w // 2, frame_h // 3), size=1.5)
 
 def show_game_over_screen(frame, frame_w, frame_h, score):
     frame[:] = 0
@@ -66,7 +63,7 @@ def generate_ground_block(frame_w, frame_h, last_blocks):
 
 def reset_game(state, frame_h, frame_w, block_image, char_scale):
     state.update({
-        'jumping': False,
+        'jumping': True,
         'y_velocity': 0,
         'score': 0,
         'previous_pitch': 0,
@@ -89,7 +86,5 @@ def reset_game(state, frame_h, frame_w, block_image, char_scale):
         block["x"] = i * 160
         state['ground_blocks'].append(block)
 
-    first = next((b for b in state['ground_blocks'] if b['type'] == 'platform'), None)
+    state['y'] = -int(frame_h * char_scale)
     state['x'] = frame_w // 3
-    state['y'] = first["y"] - int(frame_h * char_scale) if first else y
-    state['game_start_time'] = time.time()
