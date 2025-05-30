@@ -1,4 +1,4 @@
-# Loud Scream Hero
+# Loud Scream
 
 ## Deskripsi Project
 Loud Scream Hero adalah sebuah filter game interaktif berbasis Python yang memanfaatkan input suara mikrofon untuk mengontrol karakter dalam permainan. Pemain mengeluarkan suara keras untuk membuat karakter melompat melewati rintangan secara real-time. Game ini menggunakan OpenCV untuk rendering grafis, PyAudio untuk menangkap input suara, dan Pygame untuk musik latar, sehingga menghadirkan pengalaman bermain yang unik dan seru seperti konsep game “Scream Go Hero”.
